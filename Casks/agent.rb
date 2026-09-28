@@ -1,6 +1,6 @@
 cask "agent" do
-  version "0.1.0"
-  sha256 "467d95be258a048036503bdf970ac7b5721f03bb35838e456431825815188e41"
+  version "0.1.1"
+  sha256 "615ae11a0296f9e325973dfc68180009f5dae91515c4b4491cfd2cfb73c6ebdb"
 
   url "https://github.com/lydakis/agent/releases/download/v#{version}/Agent_#{version}_universal.zip"
   name "Agent"
@@ -15,6 +15,7 @@ cask "agent" do
   depends_on :macos
 
   app "Agent.app"
+  binary "#{appdir}/Agent.app/Contents/MacOS/agent"
 
   # The app starts a daemon from its bundle that outlives the window. Stop it
   # (letting running turns finish) before the bundle goes, as on an upgrade.
