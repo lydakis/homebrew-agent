@@ -1,6 +1,6 @@
 cask "agent" do
-  version "0.1.3"
-  sha256 "0c26b8a9b7edec2a3bee01d1a7a3a17d094328a8ca42bc632d2c777aa0d9b8ff"
+  version "0.2.0"
+  sha256 "6fdfb5199e82edbca3632399586b3b1998011d6261fd03f053e81d789e605418"
 
   url "https://github.com/lydakis/agent/releases/download/v#{version}/Agent_#{version}_universal.zip"
   name "Agent"
@@ -17,6 +17,21 @@ cask "agent" do
   app "Agent.app"
   binary "#{appdir}/Agent.app/Contents/MacOS/agent"
 
+  # What the app writes at every start (its scripts, triggers and the skill
+  # links in your .agents/skills) is there before its first window. Before it
+  # goes, only its skill links are removed, so none is left leading nowhere.
+  postflight do
+    system_command "#{appdir}/Agent.app/Contents/MacOS/agent-app",
+                   args:         ["--setup"],
+                   must_succeed: false
+  end
+
+  uninstall_preflight do
+    system_command "#{appdir}/Agent.app/Contents/MacOS/agent-app",
+                   args:         ["--unlink-skills"],
+                   must_succeed: false
+  end
+
   # The app starts a daemon from its bundle that outlives the window. Stop it
   # (letting running turns finish) before the bundle goes, as on an upgrade.
   # The store is named: the uninstalling shell's AGENT_STORE or AGENT_SOCKET
@@ -24,7 +39,7 @@ cask "agent" do
   uninstall quit:   "me.lydakis.agent",
             script: {
               executable:   "#{appdir}/Agent.app/Contents/MacOS/agent",
-              args:         ["shutdown", "--store", "#{Dir.home}/.agent/state.sqlite", "--grace", "30"],
+              args:         ["shutdown", "--store", "#{Dir.home}/.agent/state.sqlite", "--grace", "30s"],
               must_succeed: false,
             }
 
