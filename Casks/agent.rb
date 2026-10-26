@@ -1,6 +1,6 @@
 cask "agent" do
-  version "0.2.0"
-  sha256 "6fdfb5199e82edbca3632399586b3b1998011d6261fd03f053e81d789e605418"
+  version "0.3.1"
+  sha256 "0255915b3d7968198523e65800288ed8a8c6fa11128045c859bfc05ae9732e3a"
 
   url "https://github.com/lydakis/agent/releases/download/v#{version}/Agent_#{version}_universal.zip"
   name "Agent"
