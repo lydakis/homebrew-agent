@@ -1,29 +1,24 @@
 class Sonny < Formula
   desc "Terminal coordinator for a daemon that hosts many durable AI agents"
   homepage "https://github.com/lydakis/agent"
-  url "https://github.com/lydakis/agent/releases/download/v0.3.2/sonny-0.3.2.tar.gz"
-  sha256 "613397bfb388a6f17a5720a08cc1c04cfb93f89bd844437783823452403a3cd4"
+  url "https://github.com/lydakis/agent/releases/download/v0.4.0/agent-0.4.0.tar.gz"
+  sha256 "43c87cf947ae60e7d1831aca4f54068d3a85a2d1f642a05a311a13e9fbb8e389"
   license any_of: ["MIT", "Apache-2.0"]
+  head "https://github.com/lydakis/agent.git", branch: "main"
 
   livecheck do
     url :stable
     strategy :github_latest
   end
 
-  depends_on :macos
+  depends_on "rust" => :build
+  depends_on "lydakis/agent/agent"
 
   def install
-    # Sonny starts this daemon when none runs. It stays off PATH, where
-    # Agent.app's `agent` (or another program's) may already be. Sonny
-    # starts it by its `opt` path: the daemon outlives Sonny and hands its
-    # own path to agents as AGENT_BIN, and that path must outlast the
-    # version an upgrade and `brew cleanup` remove.
-    libexec.install "bin/sonny", "libexec/agent"
-    (bin/"sonny").write_env_script libexec/"sonny", AGENT_BIN: opt_libexec/"agent"
+    system "cargo", "install", *std_cargo_args(path: "sonny")
   end
 
   test do
     assert_equal "sonny #{version}", shell_output("#{bin}/sonny --version").strip
-    assert_equal "agent-runtime #{version}", shell_output("#{libexec}/agent --version").strip
   end
 end
