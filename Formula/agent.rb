@@ -1,8 +1,8 @@
 class Agent < Formula
   desc "Small daemon that hosts many durable AI agents"
   homepage "https://github.com/lydakis/agent"
-  url "https://github.com/lydakis/agent/releases/download/v0.8.0/agent-0.8.0.tar.gz"
-  sha256 "aedf34584314fe3cfe13eb11a4c66d848fb2d40d9fe9655c2b300853a9577f64"
+  url "https://github.com/lydakis/agent/releases/download/v0.8.1/agent-0.8.1.tar.gz"
+  sha256 "e92c4392ebd2efa4f0c99a3109cb8c2b0442621c935cff1f0269cc5e1fa92816"
   license any_of: ["MIT", "Apache-2.0"]
   head "https://github.com/lydakis/agent.git", branch: "main"
 
