@@ -1,10 +1,10 @@
 class SonnyNightly < Formula
   desc "Nightly terminal coordinator with its matching agent daemon"
   homepage "https://github.com/lydakis/agent"
-  url "https://github.com/lydakis/agent.git", revision: "49cf72b3f364f6cc2d53829e587cc0275f34e7c8"
-  version "3.1"
+  url "https://github.com/lydakis/agent.git", branch: "main"
+  version "3.2"
+  # Generated from revision: "9ece9999581be1e0605236f02b361b55947f7fa8"
   license any_of: ["MIT", "Apache-2.0"]
-  head "https://github.com/lydakis/agent.git", branch: "main"
 
   livecheck do
     skip "Updated by the nightly workflow"
@@ -33,6 +33,5 @@ class SonnyNightly < Formula
     assert_match(/^sonny [0-9][0-9A-Za-z.+-]* \([0-9a-f]{9,40}\)$/, sonny)
     assert_match(/^agent-runtime [0-9][0-9A-Za-z.+-]* \([0-9a-f]{9,40}\)$/, agent)
     assert_equal sonny[/\(([0-9a-f]+)\)$/, 1], agent[/\(([0-9a-f]+)\)$/, 1]
-    assert_match "(49cf72b3f)", sonny unless build.head?
   end
 end
