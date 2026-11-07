@@ -2,8 +2,8 @@ class SonnyNightly < Formula
   desc "Nightly terminal coordinator with its matching agent daemon"
   homepage "https://github.com/lydakis/agent"
   url "https://github.com/lydakis/agent.git", branch: "main"
-  version "3.2"
-  # Generated from revision: "9ece9999581be1e0605236f02b361b55947f7fa8"
+  version "5.1"
+  # Generated from revision: "b9be08ca87fc0248aa489262c5c77898d31ca102"
   license any_of: ["MIT", "Apache-2.0"]
 
   livecheck do
