@@ -2,8 +2,8 @@ class SonnyNightly < Formula
   desc "Nightly terminal coordinator with its matching agent daemon"
   homepage "https://github.com/lydakis/agent"
   url "https://github.com/lydakis/agent.git", branch: "main"
-  version "12.1"
-  # Generated from revision: "92956f5415a4d1879a056f4c9fa2891e548614d8"
+  version "13.1"
+  # Generated from revision: "aa2d191d761fde6fdc5642a1e561f9a339c061e6"
   license any_of: ["MIT", "Apache-2.0"]
 
   livecheck do
@@ -11,7 +11,6 @@ class SonnyNightly < Formula
   end
 
   depends_on "rust" => :build
-  depends_on "agent-browser"
   depends_on "ripgrep"
 
   on_linux do
