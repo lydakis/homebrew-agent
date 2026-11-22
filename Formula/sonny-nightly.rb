@@ -2,8 +2,8 @@ class SonnyNightly < Formula
   desc "Nightly terminal coordinator with its matching agent daemon"
   homepage "https://github.com/lydakis/agent"
   url "https://github.com/lydakis/agent.git", branch: "main"
-  version "18.1"
-  # Generated from revision: "db1ec0b27a9818f4374892633451403927f87b84"
+  version "20.1"
+  # Generated from revision: "fe25130ff8e9b589ad2772326310dcaf70ecb97b"
   license any_of: ["MIT", "Apache-2.0"]
 
   livecheck do
@@ -23,6 +23,7 @@ class SonnyNightly < Formula
     ENV["AGENT_BWRAP"] = (formula_opt_bin("bubblewrap")/"bwrap").to_s if OS.linux?
     system "cargo", "install", *std_cargo_args(root: libexec)
     libexec.install libexec/"bin/agent"
+    libexec.install "release/store_down.py", "release/store_lift_yields.py"
     system "cargo", "install", *std_cargo_args(path: "sonny")
   end
 
@@ -32,5 +33,6 @@ class SonnyNightly < Formula
     assert_match(/^sonny [0-9][0-9A-Za-z.+-]* \([0-9a-f]{9,40}\)$/, sonny)
     assert_match(/^agent-runtime [0-9][0-9A-Za-z.+-]* \([0-9a-f]{9,40}\)$/, agent)
     assert_equal sonny[/\(([0-9a-f]+)\)$/, 1], agent[/\(([0-9a-f]+)\)$/, 1]
+    assert_match "store_down.py STORE SCHEMA", shell_output("#{libexec}/store_down.py --help")
   end
 end
