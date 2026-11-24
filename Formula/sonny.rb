@@ -1,8 +1,8 @@
 class Sonny < Formula
   desc "Terminal coordinator for a daemon that hosts many durable AI agents"
   homepage "https://github.com/lydakis/agent"
-  url "https://github.com/lydakis/agent/releases/download/v0.10.5/agent-0.10.5.tar.gz"
-  sha256 "3c8a59a40982866845ab52abbff127e486e85f988431e64df9dd4a55a9d139f1"
+  url "https://github.com/lydakis/agent/releases/download/v0.10.6/agent-0.10.6.tar.gz"
+  sha256 "d9bcd4aa82c5f00360559a58023c3f0e32c23874a43da71dd7ee31b40425f3e8"
   license any_of: ["MIT", "Apache-2.0"]
   head "https://github.com/lydakis/agent.git", branch: "main"
 
